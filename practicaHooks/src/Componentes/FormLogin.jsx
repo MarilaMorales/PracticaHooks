@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { getUsers } from "../"; // Asegúrate de ajustar la ruta de importación
+import { getUsers } from "../Services/get.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [users, setUsers] = useState([]);
+
+
+  
 
   const handleLogin = async () => {
     setMessage(''); // Limpiar mensaje de alerta previo
@@ -17,12 +21,11 @@ const Login = () => {
 
     try {
 
-        const [users, setUsers] = useState([]);
-
+       
 
         useEffect(() => {
           const fetchUsers = async () => {
-            const data = await GetUsers();
+            const data = await getUsers();
            
             
             setUsers(data);
@@ -39,7 +42,6 @@ const Login = () => {
 
 
 
-      const userAppi = await getUsers(); // Obtener la lista de usuarios
 
       // Buscar en la lista de usuarios normales
       const user = userAppi.find(u => u.correo === email);
