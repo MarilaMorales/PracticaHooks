@@ -1,91 +1,140 @@
-import React, { useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState, useEffect } from "react";
+import { getUsers } from "../Services/get";
+import { postUser } from "../Services/Post";
 import '../Styles/Registro.css';
 
-function FormRegister() {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
-  const handleSubmit = (e) => {
+const FormRegister = () => {
+
+
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+
+    const fetchUsers = async () => {
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (error) {
+        console.error("Error al obtener los usuarios:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para manejar el registro
-    console.log('Registro enviado:', formData);
+
+    setMessage(''); // Limpiar mensaje previo
+
+
+
+
+    if (!username || !email || !password || !confirmPassword) {
+      setMessage("No dejes campos en blanco");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setMessage("Las contraseñas no coinciden");
+      return;
+    }
+
+    // Verificar si el usuario ya existe
+    const validarUser = users.find(user => user.correo === email);
+
+    if (validarUser) {
+      setMessage("Email ya se encuentra registrado");
+      return;
+    }
+
+    try {
+      // Registrar nuevo usuario
+      await postUser({ username, email, password });
+      setMessage("¡Registro exitoso!");
+
+      
+
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+
+    } catch (error) {
+
+      console.error("Error en el Registro", error);
+      setMessage("Error");
+    }
   };
+
+
+
 
   return (
     <div className="containerRegister">
-        <div className="tituloRegister">
-            <h2>Register</h2>
+      <div className="tituloRegister">
+        <h2>Register</h2>
+      </div>
+      <form className="formulario" onSubmit={handleSubmit}>
+        <div className="form-group mb-3">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
         </div>
-        <Form className="formulario" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Enter username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
-                <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group>
+        <div className="form-group mb-3">
+          <label htmlFor="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <small className="text-muted">We'll never share your email with anyone else.</small>
+        </div>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+        <div className="form-group mb-3">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
 
-            <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                    type="password"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                />
-            </Form.Group>
+        <div className="form-group mb-3">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
 
-            <Button variant="primary" type="submit">
-                Register
-            </Button>
-        </Form>
+        <button type="submit">Register</button>
+        {message && <div className="alert" style={{ color: 'red' }}>{message}</div>}
+      </form>
     </div>
   );
 }
