@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
-import { getUsers } from "../Services/get.jsx";
+import React, { useState, useEffect } from 'react';
+import { getUsers } from "../Services/get";
 
-const Login = () => {
+const FormLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [users, setUsers] = useState([]);
 
+  // Definir useEffect para cargar los usuarios
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (error) {
+        console.error('Error al obtener los usuarios:', error);
+      }
+    };
 
-  
+    fetchUsers();
+  }, []); 
 
   const handleLogin = async () => {
     setMessage(''); // Limpiar mensaje de alerta previo
@@ -20,36 +31,13 @@ const Login = () => {
     }
 
     try {
-
-       
-
-        useEffect(() => {
-          const fetchUsers = async () => {
-            const data = await getUsers();
-           
-            
-            setUsers(data);
-       
-          };
-          fetchUsers();
-        }, []);
-    
-        console.log(users)
-
-
-
-
-
-
-
-
       // Buscar en la lista de usuarios normales
-      const user = userAppi.find(u => u.correo === email);
+      const user = users.find(u => u.correo === email);
 
       if (user) {
         if (user.password === password) {
           setMessage('¡Éxito! Usuario entrando.');
-          window.location.href = 'http://localhost:1234/Estudiantes.html'; // Redirigir a la página de estudiantes
+          
         } else {
           setMessage('Contraseña incorrecta.');
         }
@@ -57,7 +45,7 @@ const Login = () => {
         setMessage('Este usuario no existe.');
       }
     } catch (error) {
-      console.error('Error al obtener los usuarios:', error);
+      console.error('Error en el proceso de login:', error);
       setMessage('Error en ingreso de datos');
     }
 
@@ -107,4 +95,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default FormLogin;
