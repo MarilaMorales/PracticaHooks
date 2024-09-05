@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getUsers } from "../Services/get";
 import { postUser } from "../Services/Post";
 import '../Styles/Registro.css';
+import { useNavigate } from "react-router-dom";
+
+
 
 
 
@@ -14,6 +17,7 @@ const FormRegister = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [users, setUsers] = useState([]);
+  const navigate= useNavigate();
 
   useEffect(() => {
 
@@ -59,6 +63,7 @@ const FormRegister = () => {
       // Registrar nuevo usuario
       await postUser({ username, email, password });
       setMessage("¡Registro exitoso!");
+      navigate ("/login"); // Usar el navigate para redirigir
 
       
 

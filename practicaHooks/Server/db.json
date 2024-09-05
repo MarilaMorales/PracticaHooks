@@ -7,30 +7,6 @@
       "password": "1212"
     },
     {
-      "id": "bc9b",
-      "nombre": "sheyris",
-      "correo": "sheyris@gmail.com",
-      "password": "1314"
-    },
-    {
-      "id": "d988",
-      "nombre": "sheyris",
-      "correo": "sheyris@gmail.com",
-      "password": "1314"
-    },
-    {
-      "id": "e1bf",
-      "nombre": "Rulma",
-      "correo": "rulma@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "dce4",
-      "nombre": "Isla Torres",
-      "correo": "torres@gmail.com",
-      "password": "1234"
-    },
-    {
       "id": "b2c0",
       "nombre": {
         "username": "kiko",
@@ -43,6 +19,14 @@
       "nombre": {
         "username": "otto",
         "email": "otto@gmail.com",
+        "password": "1234"
+      }
+    },
+    {
+      "id": "7e0b",
+      "nombre": {
+        "username": "Ana",
+        "email": "ana@gmail.com",
         "password": "1234"
       }
     }
@@ -74,90 +58,12 @@
       "estado": "rechazado"
     },
     {
-      "id": "d96d",
-      "usuario": "Luis Monge",
-      "codigoComputadora": "HW71",
-      "fechaSalida": "2024-08-30",
-      "fechaRegreso": "2024-09-03",
-      "estado": "aceptado"
-    },
-    {
-      "id": "5964",
-      "usuario": "Rebeca",
-      "sede": "Sede Edunamica Nosara",
-      "fechaSalida": "2024-08-31",
-      "fechaRegreso": "2024-09-03",
-      "codigoComputadora": "VM73",
-      "condicionesAceptadas": true,
-      "estado": "aceptado"
-    },
-    {
-      "id": "c343",
-      "usuario": "Roberto Ruiz",
-      "codigoComputadora": "CR66",
-      "fechaSalida": "2024-08-30",
-      "fechaRegreso": "2024-08-31",
-      "estado": "rechazado"
-    },
-    {
       "id": "a02b",
       "usuario": "Tamara Li",
       "codigoComputadora": "WS12",
       "fechaSalida": "2024-08-30",
       "fechaRegreso": "2024-09-06",
       "estado": "rechazado"
-    },
-    {
-      "id": "1c36",
-      "usuario": "Luna Li",
-      "codigoComputadora": "GU29",
-      "fechaSalida": "2024-08-30",
-      "fechaRegreso": "2024-09-01",
-      "estado": "aceptado"
-    },
-    {
-      "id": "b79a",
-      "usuario": "Mati fe",
-      "codigoComputadora": "WS155",
-      "fechaSalida": "2024-08-30",
-      "fechaRegreso": "2024-09-06",
-      "estado": "rechazado"
-    },
-    {
-      "id": "583a",
-      "usuario": "erin kio",
-      "sede": "Sede Santa Ana",
-      "fechaSalida": "2024-09-01",
-      "fechaRegreso": "2024-09-05",
-      "codigoComputadora": "LO62",
-      "condicionesAceptadas": true
-    },
-    {
-      "id": "2d99",
-      "usuario": "Aria Stark",
-      "sede": "Sede El Huerto",
-      "fechaSalida": "2024-08-30",
-      "fechaRegreso": "2024-09-01",
-      "codigoComputadora": "FC45",
-      "condicionesAceptadas": true
-    },
-    {
-      "id": "dcd7",
-      "usuario": "Dennis",
-      "sede": "Sede Santa Ana",
-      "fechaSalida": "2024-08-30",
-      "fechaRegreso": "2024-09-07",
-      "codigoComputadora": "FR47",
-      "condicionesAceptadas": true
-    },
-    {
-      "id": "6cdd",
-      "usuario": "Triny Fallas",
-      "sede": "Sede Edunamica Nosara",
-      "fechaSalida": "2024-08-31",
-      "fechaRegreso": "2024-09-04",
-      "codigoComputadora": "WS77",
-      "condicionesAceptadas": true
     },
     {
       "id": "201d",

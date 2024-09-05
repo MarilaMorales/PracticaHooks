@@ -7,7 +7,10 @@ const FormLogin = () => {
   const [message, setMessage] = useState('');
   const [users, setUsers] = useState([]);
 
-  // Definir useEffect para cargar los usuarios
+
+
+
+  // Definir useEffect para cargar los usuarios desde el db.jason
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -24,14 +27,15 @@ const FormLogin = () => {
   const handleLogin = async () => {
     setMessage(''); // Limpiar mensaje de alerta previo
 
-    // Validar que ambos campos estén llenos
+    // Tirar alerta si hay campos vacios
     if (!email || !password) {
-      setMessage('Por favor llena todos los campos!');
+      setMessage("Por favor llena todos los campos!");
       return;
     }
 
     try {
       // Buscar en la lista de usuarios normales
+      
       const user = users.find(u => u.correo === email);
 
       if (user) {
