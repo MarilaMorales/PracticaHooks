@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { getUsers } from "../Services/get";
+import { useNavigate } from "react-router-dom";
+import "../Styles/Login.css" 
+
+
 
 const FormLogin = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
 
 
 
-  // Definir useEffect para cargar los usuarios desde el db.jason
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -21,27 +26,30 @@ const FormLogin = () => {
       }
     };
 
+  
     fetchUsers();
-  }, []); 
+  }, []);
+
+
+
+
 
   const handleLogin = async () => {
-    setMessage(''); // Limpiar mensaje de alerta previo
+    setMessage('');
 
-    // Tirar alerta si hay campos vacios
+
     if (!email || !password) {
       setMessage("Por favor llena todos los campos!");
       return;
     }
 
     try {
-      // Buscar en la lista de usuarios normales
-      
       const user = users.find(u => u.correo === email);
 
       if (user) {
         if (user.password === password) {
           setMessage('¡Éxito! Usuario entrando.');
-          
+          navigate("/home");
         } else {
           setMessage('Contraseña incorrecta.');
         }
@@ -53,32 +61,37 @@ const FormLogin = () => {
       setMessage('Error en ingreso de datos');
     }
 
-    // Limpiar los campos de entrada
     setEmail('');
     setPassword('');
   };
 
+
+
+
+
   return (
     <div className="wrapper">
-      <div className="form-box login">
-        <h2>Login</h2>
+      <div className="form-box">
+        <h2 className='LoginTitulo'>Login</h2>
         <div className="input-box">
           <span className="icon">
             <ion-icon name="mail"></ion-icon>
           </span>
           <input
+            id='inputCss'
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label>Email</label>
+          <label id='emailTitulo'>Email</label>
         </div>
         <div className="input-box">
           <span className="icon">
             <ion-icon name="lock-closed"></ion-icon>
           </span>
           <input
+            id='inputCss'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -89,14 +102,16 @@ const FormLogin = () => {
         <div className="remember-forgot">
           <a href="#">Forgot Password?</a>
         </div>
-        <button onClick={handleLogin}>Login</button>
+        <button id='btnLogin' className="btn btn-primary" onClick={handleLogin}>Login</button>
         <div className="login-register">
           <p>No Tienes Cuenta?<a href="#" className="register-link">Regístrate</a></p>
         </div>
-        {message && <div id="mensajeAlert" style={{ color: 'red' }}>{message}</div>}
+        {message && <div id="mensajeAlert">{message}</div>}
       </div>
     </div>
   );
 };
+
+
 
 export default FormLogin;

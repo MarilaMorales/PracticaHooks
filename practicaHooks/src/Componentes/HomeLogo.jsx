@@ -1,3 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-<h1>HOME</h1>
+const Home = () => {
+  return (
+    <h1>HOME</h1>
+  );
+};
+
+export default Home;

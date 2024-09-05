@@ -1,12 +1,12 @@
 import React from 'react'
-import FormLogin from '../Componentes/FormLogin.jsx'
+import HomeLogo from '../Componentes/HomeLogo.jsx'
 
-function Login() {
+function Home() {
   return (
     <div>
-      <FormLogin />
+      <HomeLogo />
     </div>
   )
 }
 
-export default Login
+export default Home
