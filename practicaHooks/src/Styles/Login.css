@@ -1,12 +1,17 @@
 #btnLogin{
-    background-color: rgba(11, 128, 136, 0.671);
+    background-color: rgba(35, 193, 204, 0.671);
 }
 
 #emailTitulo{
     font-size: 1.3rem;
-    color: #15f0e5;
+    color: #a0148d;
 }
 
+#passwordtitulo{
+    font-size: 1.3rem;
+    color: #a0148d;
+
+}
 
 
 .wrapper {
@@ -14,16 +19,21 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #0f615a;
+    background-image: url("../IMG/Fondo.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
   }
   
   .form-box {
+  
     width: 100%;
     max-width: 30rem;
     padding: 20px;
     box-shadow:
-    inset 0 -3em 3em rgba(0, 200, 67, 0.3),
-    0 0 0 2px turquoise,
+    inset 0 -3em 3em rgba(240, 41, 213, 0.863),
+    0 0 0 2px rgb(177, 70, 150),
     0.3em 0.3em 1em rgba(230, 225, 221, 0.683);
     backdrop-filter: blur(10px);
     border-radius: 2rem;

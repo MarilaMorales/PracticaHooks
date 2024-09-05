@@ -65,7 +65,9 @@ const FormLogin = () => {
     setPassword('');
   };
 
-
+  const irRegistro=()=>{
+    navigate("/Registro")
+  }
 
 
 
@@ -97,14 +99,14 @@ const FormLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label>Password</label>
+          <label id='passwordtitulo'>Password</label>
         </div>
         <div className="remember-forgot">
           <a href="#">Forgot Password?</a>
         </div>
         <button id='btnLogin' className="btn btn-primary" onClick={handleLogin}>Login</button>
         <div className="login-register">
-          <p>No Tienes Cuenta?<a href="#" className="register-link">Regístrate</a></p>
+          <p>No Tienes Cuenta?<a href="" onClick={irRegistro} className="register-link">Regístrate</a></p>
         </div>
         {message && <div id="mensajeAlert">{message}</div>}
       </div>
